@@ -22,7 +22,8 @@ func main() {
 	}
 	fmt.Println("before:", nums)
 	// sort.QuickSort(nums)
-	sort.FindSort(nums)
+	// sort.FindSort(nums)
+	sort.MergeSort(nums)
 	fmt.Println("after:", nums)
 
 	for i := 1; i < N; i++ {
