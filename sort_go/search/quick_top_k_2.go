@@ -1,4 +1,4 @@
-package sort
+package search
 
 func partition(nums []int, lo, hi int) int {
 	start, end, key := lo, hi, nums[lo]
@@ -17,17 +17,22 @@ func partition(nums []int, lo, hi int) int {
 	return end
 }
 
-func _quickSort(nums []int, lo, hi int) {
+func _quickSort(nums []int, lo, hi, k int) {
 	if hi <= lo {
 		return
 	}
 	j := partition(nums, lo, hi)
-	_quickSort(nums, lo, j-1) // nums[lo,,,j-1]
-	_quickSort(nums, j+1, hi) // nums[j+1,,,hi]
-
+	if j == k-1 {
+		return
+	} else if j > k-1 {
+		_quickSort(nums, lo, j-1, k) // nums[lo,,,j-1]
+	} else {
+		_quickSort(nums, j+1, hi, k) // nums[j+1,,,hi]
+	}
 }
 
 // QuickSort 递归实现快排
-func QuickSort(nums []int) {
-	_quickSort(nums, 0, len(nums)-1)
+func QuickSort(nums []int, k int) []int {
+	_quickSort(nums, 0, len(nums)-1, k)
+	return nums[:k]
 }
